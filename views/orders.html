@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+        integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+        crossorigin="anonymous"></script>
+
+    <title>Some restorunt</title>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+       
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="home.html">Home </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="menu.html">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="orders.html">Orders <span class="sr-only">(current)</span></a>
+                </li> <li class="nav-item">
+                    <a class="nav-link disabled" href="login.html">login</a>
+                </li> <li class="nav-item">
+                    <a class="nav-link disabled" href="register.html">register</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <div class="row">
+
+            <div class="col-4">
+                <h2>Menu</h2>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                        Category 1
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Item 1</li>
+                        <li class="list-group-item">Item 2</li>
+                        <li class="list-group-item">Item 3</li>
+                    </ul>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                        Category 2
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Item 1</li>
+                        <li class="list-group-item">Item 2</li>
+                        <li class="list-group-item">Item 3</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-4">
+                <h2>My order</h2>
+                <div class="card" style="width: 18rem;">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Chosen item 1</li>
+                        <li class="list-group-item">Chosen item 2</li>
+                        <li class="list-group-item">Chosen item 3</li>
+                    </ul>
+                    <label class="pl-3 pt-2 pb-0 pr-0 m-0">
+                        Total - 14.44 $
+                    </label>
+                    <button class="btn btn-primary w-100 mt-4"> Checkout</button>
+                </div>
+            </div>
+            <div class="col-4">
+                <h2>Previous orders</h2>
+                <div class="card" style="width: 18rem;">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><a data-toggle="collapse" data-target="#collapseOne"
+                                aria-expanded="true" aria-controls="collapseOne">Order
+                                347</a></li>
+                        <div id="collapseOne" class="collapse">
+                            <div class="card" style="width: 18rem;">
+                                <label class='mx-2'>Placed on - 11/11/1111</label>
+                                <label class='mx-2 my-0 py-0'>Total payed - 20.44$</label>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Chosen item 1</li>
+                                    <li class="list-group-item">Chosen item 2</li>
+                                    <li class="list-group-item">Chosen item 3</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <li class="list-group-item">Order 568</li>
+                        <li class="list-group-item">Order 513</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
