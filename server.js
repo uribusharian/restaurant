@@ -5,22 +5,29 @@ const socketio = require('socket.io');
 const { Console } = require('console');
 const formatMessage = require('./services/messages');
 const { userJoin, getCurrentUser,userLeave,getRoomUsers } = require('./services/users');
+const bodyParser = require('body-parser');
 const router = express.Router();
 
-require('dotenv').config();
+require('./models/user_model');
 
 const app = express();
 
-const route = require('./routes/router.js')
-app.use('/',route )
+app.use(bodyParser.urlencoded({
+    extended:true
+}));
+app.use(bodyParser.json());
 
+const route = require ('./routes/router.js');
+app.use('/',route );
+app.use('/register',router);
 const server = http.createServer(app);
 const io = socketio(server);
 
 //set static folder
+
 app.use(express.static(path.join(__dirname, 'views')));
 console.log(path.join(__dirname, 'views'))
-const botName = 'chatBot'
+const botName = 'waiterBot'
 
 //run every time a client connects
 io.on('connection', (socket) => {
@@ -61,7 +68,7 @@ io.on('connection', (socket) => {
             }
 
     });
-    
+
 
 });
 
