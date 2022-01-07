@@ -2,12 +2,11 @@ const express = require ('express');
 const path = require ('path');
 const http = require ('http');
 const socketio = require('socket.io');
-const { Console } = require('console');
 const formatMessage = require('./services/messages');
 const { userJoin, getCurrentUser,userLeave,getRoomUsers } = require('./services/users');
 const bodyParser = require('body-parser');
 const router = express.Router();
-
+require('dotenv').config();
 require('./models/user_model');
 
 const app = express();
@@ -74,6 +73,6 @@ io.on('connection', (socket) => {
 
 
 
-const PORT = 3000 || process.env.PORT
+const PORT = process.env.PORT
 
 server.listen(PORT ,()=>{console.log(`server is listening on port - ${PORT}`) });

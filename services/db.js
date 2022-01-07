@@ -3,7 +3,7 @@ const { findByIdAndDelete, findOneAndDelete, validate } = require('mongoose/lib/
 const { db } = require('../models/user_model');
 const { Query } = require('mongoose');
 const { object, getValue } = require('mongoose/lib/utils');
-
+const bcrypt = require ("bcryptjs")
 
 
 class DB {
@@ -11,8 +11,9 @@ class DB {
     
     async findOneUser(email){
      try {  
-       const query1 = await (userModel.find({'email':email}).exec());
-        if (email===query1[0].email){      
+       const user = await (userModel.find({'email':email}).exec());
+        if (email===user[0].email){      
+        return user
         }
         }
       
@@ -23,10 +24,17 @@ class DB {
 
     async checkPassword(email,password){
           
-       const query1 = await (userModel.find({'email':email}).exec());           
-       if ((email==query1[0].email)&&(password==query1[0].password)){
+       const user = await (userModel.find({'email':email}).exec());
+       bcrypt.genSalt (10, (err,salt)=> bcrypt.hash(password,salt,(err, hash)=>
+       {
+           if(err) throw err;
+
+           password = hash
+           
+       }));           
+       if ((email==user[0].email)&&(password==user[0].password)){
             
-            return true  
+            return user
         }
         else{
             
@@ -45,28 +53,43 @@ class DB {
        password = this.sanitize(password);
        
        try {
+        const user = await (userModel.find({'email':email}).exec());
+           // hash password
+           bcrypt.genSalt (10, (err,salt)=> bcrypt.hash(password,salt,(err, hash)=>
+           {
+               if(err) throw err;
+
+               password = hash
+               
+           }));
+           
            return { data: await new userModel({ name,address,email, password }).save() };
            
         } catch (e) {
             console.log(e);
             return {  err: e.message }
         }
-    }
+    };
     sanitize(inp) {
         return inp.replace(/<script>/g, '')
-    }
+    ;}
     
-    async deleteUser({id }) {
+  
+    
+    async deleteUser({email }) {
         
-        try {
-            return {  data: await new userModel({id}).findByIdAndDelete() };
-            
-            
-        } catch (e) {
-            console.log(e);
-            return { status: false, err: e.message }
+        if (email!==user[0].email){      
+         console.log("no such user")   
         }
-    }
+        else
+        {
+          await (userModel.findByIdAndDelete({'email':email}).exec());
+        }
+    }            
+              
+            
+                
+            
 }
 
 module.exports = DB  
