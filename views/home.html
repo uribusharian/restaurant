@@ -10,8 +10,11 @@
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
         integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
-        crossorigin="anonymous"></script>
-    <title>Some restorunt</title>
+        crossorigin="anonymous">
+        
+    </script>
+    <script src="./logout.js"></script>
+    <title>Some restaurant</title>
     <style>
         body {
             margin: 0;
@@ -72,7 +75,7 @@
         }
     </style>
     <script>
-           function addMsg(event, msg) {
+        function addMsg(event, msg) {
             event.preventDefault();
             const base = document.getElementById('messages');
             const msg_li = document.createElement('li');
@@ -85,28 +88,38 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <div id="hello"></div>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
                     <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="login.html">login</a>
-                </li> 
-                <li class="nav-item">
-                    <a class="nav-link" href="register.html">register</a>
-                </li>
-               
-                <li class="nav-item">   
-                    <a class="nav-link disabled" href="menu.html">Menu</a>
+                    <a class="nav-link" href="login.html" id="navbarLogin">login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="orders.html">Orders</a>
+                    <a class="nav-link" href="register.html" id="navbarRegister">register</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="menu.html">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="orders.html" id="navbarOrders">Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="index.html" id="navbarChat">Chat </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="admin.html"id="navbarAdmin" >admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" id="navbarLogout" href="/Logout" >logout</a>
                 </li>
             </ul>
         </div>
@@ -137,15 +150,41 @@
         </div>
     </div>
     <div class="jumbotron text-center font-weight-bold" style='font-size: 64px;'>
-        <p><a class = "btn btn-primary btn-lg" href="login.html" role="button">ORDER NOW!</a></p>
-        <p><a class = "btn btn-primary btn-lg" href="register.html" role="button">OR REGISTER IF YOU ARE STILL NOT A MEMBER</a></p>
-    <div>
-        <h1><a style="font-size: 25px;" href="index.html" class="btn" >Open Chat! </a></h1>
-              
+        <p><a class="btn btn-primary btn-lg" href="/orders" role="button">ORDER NOW!</a></p>
+        <p><a class="btn btn-primary btn-lg" href="register.html" role="button">OR REGISTER IF YOU ARE STILL NOT A
+                MEMBER</a></p>
+        <div>
+            <h1><a style="font-size: 25px;" href="index.html" class="btn">Open Chat! </a></h1>
 
-       
-    </div>
 
+
+        </div>
+        <script>
+            console.log(document.cookie.split("=")[1])
+            fetch(`/userInfo?email=` + document.cookie.split("=")[1])
+                .then(response => response.json())
+                .then(data => {
+                    if (data[0].username == "admin"){
+                        document.getElementById("hello").innerHTML = "Hi, " + data[0].username;
+                        navChange()
+                        isAdmin()
+                    }
+                    else {
+                        document.getElementById("hello").innerHTML = "Hi, " + data[0].username;
+                        navChange()
+                    }
+                    
+                })
+                .catch(msg => {
+                    document.getElementById("hello").innerHTML = "Hi, Guest" ;
+                    console.log("mgs"+msg)  
+                
+                });
+
+
+
+           
+        </script>
 </body>
 
 </html>

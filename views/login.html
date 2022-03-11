@@ -9,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    <script src="./logout.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -18,27 +19,38 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <div id="hello"></div>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
                     <a class="nav-link" href="home.html">Home </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="login.html">login <span class="sr-only">(current)</span></a>
-                </li> 
-                <li class="nav-item">
-                    <a class="nav-link" href="register.html">register</a>
+                    <a class="nav-link" href="login.html" id="navbarLogin">login <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="menu.html">Menu</a>
+                    <a class="nav-link" href="register.html" id="navbarRegister">register</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="menu.html">Menu</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="orders.html">Orders</a>
+                    <a class="nav-link disabled" href="orders.html" id="navbarOrders">Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="index.html" id="navbarChat">Chat </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="admin.html"id="navbarAdmin" >admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" id="navbarLogout" href="/Logout" >logout</a>
                 </li>
             </ul>
         </div>
@@ -49,7 +61,7 @@
         <form action="/login" method="POST"  style="max-width: 300px;">
             <div class="form-group">
                 <label for="inputEmail">Email</label>
-                <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" required>
+                <input type="email" class="form-control"  id="inputEmail" name="email" placeholder="Email" required>
             </div>
             <div class="form-group">
                 <label for="inputPassword">Password</label>
@@ -58,12 +70,15 @@
             <div class="form-group">
                 <label class="form-check-label"><input type="checkbox"> Remember me</label>
             </div>
-            <button type="submit" class="btn btn-primary ">Sign in</button>
-            <button type="submit" class="btn btn-secondary">Register</button>
+            <button type="submit" class="btn btn-primary" id="signIn">Sign in</button>
+            <label >Or</label>
+            <button type="button" class="btn btn-secondary" >Register</button>
 
         </form>
     </div>
-  
+  <script>
+    
+  </script>
 </body>
 
 </html>

@@ -16,18 +16,12 @@ const userSchema = new mongoose.Schema({
     address: String,
     email:  String, 
     password: String,
+    isAdmin: Boolean
     
 });
 
-const dishSchema = new mongoose.Schema({
-     
-   dishname:String,
-   price: Number,
-   
-    
-});
 
 const userModel =  mongoose.model('user', userSchema)
-const dishModel = mongoose.model('dish', dishSchema)
 
-module.exports = userModel, dishModel
+
+module.exports = userModel

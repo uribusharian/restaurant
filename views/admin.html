@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+        integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+        crossorigin="anonymous"></script>
+        <script src="./logout.js"></script>
+    <title>Some restaurant</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="hello"></div>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="home.html">Home </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html">login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="register.html">register</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="menu.html">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="orders.html">Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Chat </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin.html">admin <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="navbarLogout" href="/logout" >logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <h1>Hello Admin!</h1>
+    <br>
+    <h2>Here you can add or delete dishes from the data base and from the orders menu</h2>
+    <br>
+    <div class="container">
+        <div class="col-4">
+            <div style="max-width: 300px;" id="add-form">
+                <form class="form-group mb-2">
+                    <label for="dish">Is this dish a main dish or a side dish:</label>
+                    <select id="dishType" name="dishType">
+                        <div class="form-group mb-2">
+                            <option value="main">Main</option>
+                            <option value="side">Side</option>
+                        </div>
+                    </select>
+            </div>
+
+            <div class="form-group mb-2">
+                <label for="dishName">Enter the dish name: </label>
+                <input type="text" id=dishName name=dishName required>
+            </div>
+            <div class="form-group mb-2">
+                <label for="price">Enter the dish price: </label>
+                <input type="number" id="price" name="price" required>
+            </div>
+                </select>
+                <button onclick="addDish()" class="btn btn-primary w-100">add dish</button>
+            </div>
+            
+            <div class="col-4">
+                <form action="" method="POST" style="max-width: 300px;" id="add-form">
+
+                    <div class="form mb-2">
+                        <label for="dishNameToRemove">Enter the dish name: </label>
+                        <input type="text" id=dishNamedishNameToRemove name=dishNamedishNameToRemove>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Remove dish</button>
+                </form>
+            </div>
+            <div class="col-4" id="menu">
+
+            </div>
+
+        </div>
+        <script>
+            async function addDish() {
+                const dishType = document.getElementById("dishType").value
+                const dishName = document.getElementById("dishName").value
+                const price = document.getElementById("price").value
+
+                const rawResponse = await fetch('/addDish', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ dishType: dishType, dishName: dishName, price: price })
+                });
+                const content = await rawResponse.json();
+
+                document.getElementById("menu").innerHTML = ""
+                content.forEach(element => {
+                    const dishDiv = document.createElement("div")
+                    dishDiv.innerHTML = element.dishName
+                    document.getElementById("menu").appendChild(dishDiv)
+                });
+            }
+
+        </script>
+</body>
+
+</html>

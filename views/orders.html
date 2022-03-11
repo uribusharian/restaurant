@@ -11,14 +11,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
         integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
         crossorigin="anonymous"></script>
-
-    <title>Some restorunt</title>
+    <script src="./logout.js"></script>
+    <title>Some restaurant</title>
 
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-       
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -32,11 +32,22 @@
                     <a class="nav-link" href="menu.html">Menu</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="orders.html">Orders <span class="sr-only">(current)</span></a>
-                </li> <li class="nav-item">
-                    <a class="nav-link disabled" href="login.html">login</a>
-                </li> <li class="nav-item">
-                    <a class="nav-link disabled" href="register.html">register</a>
+                    <a class="nav-link" href="orders.html">Orders <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="login.html">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="register.html">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Chat </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="admin.html">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="navbarLogout" href="/logout" >logout</a>
                 </li>
             </ul>
         </div>
@@ -48,22 +59,21 @@
                 <h2>Menu</h2>
                 <div class="card" style="width: 18rem;">
                     <div class="card-header">
-                        Category 1
+                        Main Dishes
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Item 1</li>
-                        <li class="list-group-item">Item 2</li>
-                        <li class="list-group-item">Item 3</li>
+                    <ul class="list-group list-group-flush" id="mainDishMenu">
+                        <li class="list-group-item"> <input type="button" value="Item1"></input> </li>
+                        <li class="list-group-item"><input type="button" value="Item2"></input></li>
+                        <li class="list-group-item"><input type="button" value="Item3"></input></li>
+                        <li class="list-group-item"><input type="button" value="Item4"></input></li>
                     </ul>
                 </div>
                 <div class="card" style="width: 18rem;">
                     <div class="card-header">
-                        Category 2
+                        Side Dishes
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Item 1</li>
-                        <li class="list-group-item">Item 2</li>
-                        <li class="list-group-item">Item 3</li>
+                    <ul class="list-group list-group-flush" id="sideDishMenu">
+                    
                     </ul>
                 </div>
             </div>
@@ -71,43 +81,112 @@
                 <h2>My order</h2>
                 <div class="card" style="width: 18rem;">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Chosen item 1</li>
-                        <li class="list-group-item">Chosen item 2</li>
-                        <li class="list-group-item">Chosen item 3</li>
+                        <form style="max-width: 300px;" id="order-form" action="">
+                            <label for="Dishes">Choose an Item:</label>
+                            <div id="orders">
+
+                            </div>
+                            <br>
+                            <label for="Dishes">total:</label>
+                            <button type="submit" class="btn btn-primary w-100">Checkout</button>
+                            <br>
+                            <input type="button" value="chat">
+
+                        </form>
                     </ul>
-                    <label class="pl-3 pt-2 pb-0 pr-0 m-0">
-                        Total - 14.44 $
-                    </label>
-                    <button class="btn btn-primary w-100 mt-4"> Checkout</button>
+
+
                 </div>
             </div>
             <div class="col-4">
                 <h2>Previous orders</h2>
-                <div class="card" style="width: 18rem;">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><a data-toggle="collapse" data-target="#collapseOne"
-                                aria-expanded="true" aria-controls="collapseOne">Order
-                                347</a></li>
-                        <div id="collapseOne" class="collapse">
-                            <div class="card" style="width: 18rem;">
-                                <label class='mx-2'>Placed on - 11/11/1111</label>
-                                <label class='mx-2 my-0 py-0'>Total payed - 20.44$</label>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Chosen item 1</li>
-                                    <li class="list-group-item">Chosen item 2</li>
-                                    <li class="list-group-item">Chosen item 3</li>
-                                </ul>
+                <div id="history">
+                    <div class="card" style="width: 18rem;">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><a data-toggle="collapse" data-target="#collapseOne"
+                                    aria-expanded="true" aria-controls="collapseOne">Order
+                                    347</a></li>
+                            <div id="collapseOne" class="collapse">
+                                <div class="card" style="width: 18rem;">
+                                    <label class='mx-2'>Placed on - 21/03/2021</label>
+                                    <label class='mx-2 my-0 py-0'>Total payed - 20.44$</label>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Chosen item 1</li>
+                                        <li class="list-group-item">Chosen item 2</li>
+                                        <li class="list-group-item">Chosen item 3</li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                        <li class="list-group-item">Order 568</li>
-                        <li class="list-group-item">Order 513</li>
-                    </ul>
+
+                        </ul>
+
+                    </div>
+                    <div class="card" style="width: 18rem;">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><a data-toggle="collapse" data-target="#collapseTwo"
+                                    aria-expanded="true" aria-controls="collapseTwo">Order
+                                    207</a></li>
+                            <div id="collapseTwo" class="collapse">
+                                <div class="card" style="width: 18rem;">
+                                    <label class='mx-2'>Placed on - 21/03/2021</label>
+                                    <label class='mx-2 my-0 py-0'>Total payed - 20.44$</label>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Chosen item 1</li>
+                                        <li class="list-group-item">Chosen item 2</li>
+                                        <li class="list-group-item">Chosen item 3</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </ul>
+
+
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
+    <script>
 
+        function addToForm(e) {
+            //document.getElementById("firstOrder").innerHTML=e.target.value
+            const orderDiv = document.createElement("div")
+            orderDiv.innerHTML = e.target.value
+            document.getElementById("orders").appendChild(orderDiv)
+        }
+        function addToHistory(e) {
+            const historyDiv = document.createElement("form")
+            historyDiv.innerHTML = e.target.value
+            document.getElementById("history").appendChild(historyDiv)
+        }
+        document.getElementById("mainDishMenu").addEventListener("click", addToForm)
+        document.getElementById("sideDishMenu").addEventListener("click", addToForm)
+        document.getElementById("order-form").addEventListener("click", addToHistory)
+    </script>
+    <script>
+        document.getElementById("sideDishMenu").addEventListener("onload")
+        async function addDish() {
+ 
+            const rawResponse = await fetch('/addDish', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ dishType: dishType, dishName: dishName, price: price })
+            });
+            const content = await rawResponse.json();
 
+            document.getElementById("sideDishMenu").innerHTML = ""
+            content.forEach(element => {
+                const dishLi = document.createElement("li")
+                dishLi.innerHTML = element.dishName
+                document.getElementById("sideDishMenu").appendChild(dishLi)
+            });
+        }
+
+    </script>
 
 </body>
 
